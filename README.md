@@ -6,7 +6,7 @@ PUN(Photon Unity Networking) 개인 스터디 백업 레포지토리입니다.
 
 ## 에셋
 
-- PUN 2 - FREE by Exit Games [(링크)](https://assetstore.unity.com/?q=PUN&orderBy=1)
+- PUN 2 - FREE by Exit Games ([링크](https://assetstore.unity.com/?q=PUN&orderBy=1))
 
 ## 참고자료
 
