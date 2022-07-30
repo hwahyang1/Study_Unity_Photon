@@ -20,17 +20,59 @@ namespace Photon_PUN.Kyle
 	 */
 	public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 	{
+		public static GameObject LocalPlayerInstance;
+
 		public float health = 1f;
 
 		[SerializeField]
 		private GameObject beams;
+
+		[SerializeField]
+		private GameObject playerUiPrefab;
 
 		private bool isFiring;
 
 		private void Awake()
 		{
 			beams.SetActive(false);
+
+			// 인원수에 따라 Scene이 변하지만, 플레이어는 재생성되지 않고 기존의 GameObject를 계속 쓰도록
+			if (photonView.IsMine)
+			{
+				LocalPlayerInstance = gameObject;
+			}
+
+			DontDestroyOnLoad(gameObject);
 		}
+
+		// 인원수가 변동 될 때 경기장의 크기가 변해서 맵탈이 일어나는 현상 방지
+		private void Start()
+		{
+			UnityEngine.SceneManagement.SceneManager.sceneLoaded += (scene, loadingMode) =>
+			{
+				CalledOnLevelWasLoaded(scene.buildIndex);
+			};
+
+			// UI 생성 및 타게팅
+			if (playerUiPrefab != null)
+			{
+				GameObject _uiGo = Instantiate(playerUiPrefab);
+				_uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+			}
+		}
+
+		private void CalledOnLevelWasLoaded(int level)
+		{
+			if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+			{
+				transform.position = new Vector3(0f, 5f, 0f);
+			}
+
+			// 얘는 인원수가 변동 될 때 날아가기 때문에 다시 생성함
+			GameObject _uiGo = Instantiate(playerUiPrefab);
+			_uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+		}
+		//
 
 		private void Update()
 		{

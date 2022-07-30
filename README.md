@@ -1,6 +1,6 @@
-# Study_Unity_Photon
+# Study_Unity_Photon_PUN
 
-PUN(Photon Unity Networking) 개인 스터디 백업 레포지토리입니다.
+Photon PUN 개인 스터디 백업 레포지토리입니다.
 
 엔진 버전: 2021.3.6f1
 
@@ -16,7 +16,7 @@ PUN(Photon Engine)을 공부하며 아래의 글(문서)들을 참고하였습�
 
 ## 실행 파일
 
-[Releases](https://github.com/hwahyang1/Study_Unity_Photon/releases)를 참고하세요.
+[Releases](https://github.com/hwahyang1/Study_Unity_Photon_PUN/releases)를 참고하세요.
 
 ## 라이선스
 
